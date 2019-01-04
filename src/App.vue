@@ -5,7 +5,6 @@
 		<div class="nav-bar">History Inspector</div>
 		<!-- <img src="./assets/img/logo.png"> -->
 		<router-view></router-view>
-		<div class="nav-bar">Footer</div>
 	</div>
 </template>
 

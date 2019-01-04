@@ -29,7 +29,7 @@ export default Vue.extend({
   padding: 2px 0;
   /* text-align: center; */
   /* float: left; */
-  border: 1px solid black;
+  box-shadow: inset 0 0 1px black;
   overflow: hidden;
 
   &:hover {

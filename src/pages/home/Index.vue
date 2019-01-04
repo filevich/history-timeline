@@ -14,8 +14,8 @@
 	 * Import Dependency
 	 */
 	import { getAlertType } from '../../helpers'
-	import TimeLine from '../../components/aux/TimeLine'
-	import SideBar from '../../components/aux/SideBar'
+	import TimeLine from '../../components/timeline/TimeLine'
+	import SideBar from '../../components/timeline/SideBar'
 
 	/**
 	 * Export
@@ -73,7 +73,7 @@ html {
 #parent {
 	display: flex;
 	flex-direction: row;
-	height: calc(100vh - 48px - 48px);
+	height: calc(100vh - 48px /* - 48px */);
 	width: 100%;
 }
 </style>

@@ -1,5 +1,7 @@
 <template>
     <div id="side-bar">
+        <el-button type="primary" :loading="true">Loading</el-button>
+        <hr />
         {{loremIpsum}}
     </div>
 </template>
