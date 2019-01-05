@@ -5,6 +5,7 @@
 
 export class Mark {
   name = ''
+  tags = []
   constructor(date) {
     this.year = date // in Gregorian calendar, astronomer notation
   }
@@ -12,9 +13,11 @@ export class Mark {
 
 /* An interval consist of two marks (dates) in time-history */
 export class Interval {
-  // Where
-  //  a, b : Mark
-  // name : string
+  from = null
+  to = null
+  subIntervals = null // [] // sorted array of non-overlaping intervals
+  name = ''
+  tags = []
   constructor(a, b, name) {
     this.from = a
     this.to = b
@@ -22,29 +25,20 @@ export class Interval {
   }
 }
 
-/* A `Timeframe` consist of a `name` and a
- * property `events`, which is of a ordered list
- * of `Interval`s ONLY (no `Mark`s should be allowed) */
-export class Timeframe {
+/* A `Timeline` consist of a `name` and a
+ * property `events`, which consists of an ordered list
+ * of `Interval`s AND/OR `Mark`s (or even other `Timeline`s) */
+export class Timeline {
   events = []
   name = ''
-}
-
-/* An `Eventsframe` consist of a `name` and a
- * property `events`, which is of a ordered list
- * of `Interval`s AND/OR `Mark`s (unlike `Timeframe`) */
-export class Eventsframe {
-  events = []
-  name = ''
+  tags = []
 }
 
 // todo: make temporal mark like rules in photoshop
 
 // note: Mark, Interval & Timeframe should implement
 // some sort of interface {toAbsoluteFrom(...), getMarginLeft(...)}
-// - but there are no interfaces in JS you fool!
-// - :'( oh man, I miss TS so bad.
-// todo: TS implementation od this.
+// in TS
 
 /* todo: THIS GOES IN PARENT CONTAINER */
 

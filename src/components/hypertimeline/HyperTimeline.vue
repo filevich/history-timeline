@@ -1,14 +1,15 @@
 <template>
   <div id="time-line" @wheel="wheelZoom" style="">
     
-    <div class="rou" :style="{ 'margin-left': cv(0) + 'px' }">
+    <div id="controls">
         ZOOM: {{roundedZoom}}% RATIO: {{ratio}}
         <button @click="decrement">-</button>
         <button @click="increment">+</button>
     </div>
 
-    <div id="timeframes-containers" :style="{ width: totalWidthInPixels + 'px' }"> <!-- TEMPORAL FIX -->
-        <div class="rou" v-for="(timeframe, index) in timeFrames" :key="index" :style="{ 'margin-left': cv(timeFrames[index].events[0].from.year) + 'px' }">
+    <div id="upper-timeline" :style="{ width: totalWidthInPixels + 'px' }"> <!-- TEMPORAL FIX -->
+        <div class="lane" v-for="(timeframe, index) in timeFrames" :key="index">
+            <div :style="'display: flex;background: #00ff08;padding: 10px;margin-left:' + cv(timeFrames[index].events[0].from.year) + 'px;'">
             <interval 
                 v-for="(interval, index) in timeframe.events"
                 :key="index" 
@@ -16,13 +17,14 @@
                 :end="interval.to.year"
                 :name="interval.name"
                 :scale="ratio" />
+            </div>
         </div>
     </div>
     
     <timeframe :width="totalWidthInPixels" :from="from" :to="to" :vw="viewWidthInYears"/>
 
-    <div id="events-containers" :style="{ width: totalWidthInPixels + 'px' }">
-        <div class="rou" v-for="(event, index) in events" :key="index" :style="{ 'margin-left': cv(event.from.year) + 'px' }">
+    <div id="lower-timeline" :style="{ width: totalWidthInPixels + 'px' }">
+        <div class="lane" v-for="(event, index) in events" :key="index" :style="{ 'margin-left': cv(event.from.year) + 'px' }">
             <interval 
                 :key="index"
                 :ini="event.from.year"
@@ -38,11 +40,10 @@
 <script>
 /* Imports */
 import Vue from 'vue'
-import _Interval from '../../components/timeline/Interval'
-import Timeframe from '../../components/timeline/Timeframe'
+import _Interval from '../../components/hypertimeline/Interval'
+import Timeframe from '../../components/hypertimeline/Timeframe'
 
-// import {Mark, Interval} from '../../components/timeline/Helper'
-import {timeFrames, eventsFrame} from './Data'
+import {foo, bar} from './Data'
 
 /* Constants */
 const defaultZoomSensitivity = 0.0001
@@ -66,8 +67,9 @@ export default Vue.extend({
             zoom: this.initialZoom,
             zoomSensitivity: defaultZoomSensitivity,
             position: (this.initialPosition) ? this.initialPosition : DEFAULT_POSITION,
-            timeFrames: timeFrames,
-            events: eventsFrame.events,
+            // todo: merge these two together
+            timeFrames: foo,
+            events: bar.events,
         }
     },
     mounted() {
@@ -123,6 +125,13 @@ export default Vue.extend({
     overflow: scroll;
 }
 
+#controls {
+    position: fixed;
+    bottom: 0%;
+    right: 25%;
+    margin: 0 35px 20px 0;
+}
+
 .row {
     display: inline-flex;
 }
@@ -148,18 +157,24 @@ export default Vue.extend({
     background: yellow;
 }
 
-.rou {
-    background: red;
+.lane {
     display: flex;
     flex-direction: row;
-    width: max-content;
-    padding: 3px;
+    background: none;
+    width: 100%;
 }
 
-#timeframes-containers{
+/* for dev/debugging purposes */
+.lane-dev {
+    padding: 2px;
+    margin: 2px 0;
+    border-bottom: 2px dashed white;
+}
+
+#upper-timeline{
     background: blue;
 }
-#events-containers{
+#lower-timeline{
     background: purple;
 }
 </style>

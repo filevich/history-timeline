@@ -1,6 +1,9 @@
 <template>
   <div class="interval"
-    :style="{ width: width + 'px' }" :title="title">{{name}}</div>
+    :style="{ width: width + 'px' }"
+    :title="title">
+    {{name}}
+  </div>
 </template>
 
 <script>
@@ -25,11 +28,11 @@ export default Vue.extend({
 <style lang="scss">
 .interval{
   background: yellow;
-  border: 1px solid black;
   padding: 2px 0;
   /* text-align: center; */
   /* float: left; */
   box-shadow: inset 0 0 1px black;
+  /* border-left: 1px solid black; */
   overflow: hidden;
 
   &:hover {

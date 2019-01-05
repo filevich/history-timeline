@@ -2,7 +2,7 @@
 	<div class="page home">
 		<div style="height:100%">
 			<div id="parent">
-				<time-line :initialZoom="0" />
+				<hyper-timeline :initialZoom="0" />
 				<side-bar />
 			</div>
 		</div>
@@ -14,8 +14,8 @@
 	 * Import Dependency
 	 */
 	import { getAlertType } from '../../helpers'
-	import TimeLine from '../../components/timeline/TimeLine'
-	import SideBar from '../../components/timeline/SideBar'
+	import HyperTimeline from '../../components/hypertimeline/HyperTimeline'
+	import SideBar from '../../components/hypertimeline/SideBar'
 
 	/**
 	 * Export
@@ -23,7 +23,7 @@
 	export default {
 		name: 'home',
 		components: {
-			'time-line': TimeLine,
+			'hyper-timeline': HyperTimeline,
 			'side-bar': SideBar,
 		},
 		data() {
