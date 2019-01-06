@@ -1,5 +1,5 @@
 <template>
-  <div id="time-line" @wheel="wheelZoom" style="">
+  <div id="time-line" @wheel="wheelZoom" class="">
     
     <div id="controls">
         ZOOM: {{roundedZoom}}% RATIO: {{ratio}}
@@ -9,14 +9,12 @@
 
     <div id="upper-timeline" :style="{ width: totalWidthInPixels + 'px' }"> <!-- TEMPORAL FIX -->
         <div class="lane" v-for="(timeframe, index) in timeFrames" :key="index">
-            <div :style="'display: flex;background: #00ff08;padding: 10px;margin-left:' + cv(timeFrames[index].events[0].from.year) + 'px;'">
-            <interval 
-                v-for="(interval, index) in timeframe.events"
-                :key="index" 
-                :ini="interval.from.year"
-                :end="interval.to.year"
-                :name="interval.name"
-                :scale="ratio" />
+            <div class="intervals-container" :style="{ marginLeft: cv(timeFrames[index].events[0].from.year) + 'px' }">
+                <interval 
+                    v-for="(interval, index) in timeframe.events"
+                    :key="index"
+                    :data="interval"                
+                    :ratio="ratio"/>
             </div>
         </div>
     </div>
@@ -24,13 +22,13 @@
     <timeframe :width="totalWidthInPixels" :from="from" :to="to" :vw="viewWidthInYears"/>
 
     <div id="lower-timeline" :style="{ width: totalWidthInPixels + 'px' }">
-        <div class="lane" v-for="(event, index) in events" :key="index" :style="{ 'margin-left': cv(event.from.year) + 'px' }">
-            <interval 
-                :key="index"
-                :ini="event.from.year"
-                :end="event.to.year"
-                :name="event.name"
-                :scale="ratio" />
+        <div class="lane" v-for="(event, index) in events" :key="index">
+            <div class="intervals-container" :style="{ marginLeft: cv(event.from.year) + 'px' }">
+                <interval 
+                    :key="index"
+                    :data="event"
+                    :ratio="ratio" />
+            </div>
         </div>
     </div>
 
@@ -92,8 +90,9 @@ export default Vue.extend({
         },
         // year to pixels, from left.
         // 0px = -4,000 BC
-        cv(ini) {
-            return (ini + Math.abs(this.from)) * this.ratio
+        cv(from) {
+            let left = this.from
+            return Math.abs(left - from) * this.ratio
         }
     },
     computed: {
@@ -110,7 +109,7 @@ export default Vue.extend({
         },
         viewWidthInYears() {
             let vwiy = this.vw / this.ratio
-            console.log('view width in years', vwiy)
+            // console.log('view width in years', vwiy)
             return vwiy
         }
     }
@@ -118,7 +117,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-#time-line{
+#time-line {
 	background: rgba(255, 0, 0, 0.3);
     width: 75%;
     position: relative;
@@ -162,19 +161,32 @@ export default Vue.extend({
     flex-direction: row;
     background: none;
     width: 100%;
+
+    .intervals-container {
+        display: flex;
+    }
 }
 
 /* for dev/debugging purposes */
-.lane-dev {
-    padding: 2px;
-    margin: 2px 0;
-    border-bottom: 2px dashed white;
-}
+.debugging {
+    
+    .lane {
+        padding: 2px;
+        margin: 2px 0;
+        border-bottom: 2px dashed white;
+    }
 
-#upper-timeline{
-    background: blue;
-}
-#lower-timeline{
-    background: purple;
+    .intervals-container {
+        background: #00ff08;
+        padding: 10px;
+    }
+
+    #upper-timeline{
+        background: blue;
+    }
+
+    #lower-timeline{
+        background: purple;
+    }
 }
 </style>

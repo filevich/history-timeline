@@ -51,6 +51,9 @@ export default Vue.extend({
   background: white;
   height: 34px;
   padding-top: 5px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px 0px;
 }
 .dummy {
   opacity: 0;
