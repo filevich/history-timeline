@@ -16,12 +16,25 @@ export class Interval {
   from = null
   to = null
   subIntervals = null // [] // sorted array of non-overlaping intervals
-  name = ''
+  name = '' // <- deprecated
+  i18n = null
   tags = []
-  constructor(a, b, name) {
-    this.from = a
-    this.to = b
-    this.name = name
+  constructor() {
+    // function overloading
+    if (arguments.length === 1) {
+      let data = arguments[0]
+      this.from = new Mark(data.from)
+      this.to = new Mark(data.to)
+      this.i18n = {
+        messages: {
+          es: { message: { title: data.title } }
+        }
+      }
+    } else {
+      // where a,b : Mark
+      this.from = arguments[0]
+      this.to = arguments[1]
+    }
   }
 }
 

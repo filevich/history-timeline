@@ -135,10 +135,6 @@ export default Vue.extend({
     display: inline-flex;
 }
 
-.caca {
-    width: 100%;
-}
-
 .guide {
     &:before {
         content: "";

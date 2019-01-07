@@ -45,7 +45,7 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #timeline-container {
   position: relative;
   background: white;

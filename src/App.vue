@@ -2,7 +2,14 @@
 	<div id="app">
 		<loading :loadingStatus="loadingStatus"></loading>
 		<alert :alertStatus="alertStatus"></alert>
-		<div class="nav-bar">History Inspector</div>
+		<div class="nav-bar">History Inspector
+			<span>{{ $t('lang.components.checkbox.label[0].langSwitch') }}</span>
+		<div class="language-panel" style="display: inline-block;">
+			<span class="language-btn" @click="switchI18n('es')">ES</span>
+			<span class="language-btn" @click="switchI18n('en')">EN</span>
+			<span class="language-btn" @click="switchI18n('cn')">簡</span>
+		</div>
+		</div>
 		<!-- <img src="./assets/img/logo.png"> -->
 		<router-view></router-view>
 	</div>
@@ -53,7 +60,9 @@
 			})
 		},
 		methods: {
-
+			switchI18n(lang) {
+				this.$store.dispatch('switchI18n', lang)
+			},
 		}
 	}
 </script>

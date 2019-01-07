@@ -1,100 +1,65 @@
-import { Mark, Interval, Timeline } from './Helper'
+import { Interval, Timeline } from './Helper'
 
-let Capodonica = new Timeline()
-Capodonica.name = 'Era Capodonica'
-Capodonica.events = [
-  new Interval(
-    new Mark(0),
-    new Mark(200),
-    'Paleozoico'
-  ),
-  new Interval(
-    new Mark(200),
-    new Mark(450),
-    'Mezosoico'
-  ),
-  new Interval(
-    new Mark(450),
-    new Mark(550),
-    'Cantabrico'
-  ),
-  new Interval(
-    new Mark(550),
-    new Mark(570),
-    'Neolitico'
-  ),
-  new Interval(
-    new Mark(570),
-    new Mark(720),
-    'Edad Media'
-  ),
-]
+let cellarius = new Timeline()
+cellarius.name = `División clásica de Cellarius`
 
-Capodonica.events[1].subIntervals = [
-  new Interval(
-    new Mark(200),
-    new Mark(300),
-    'A'
-  ),
-  new Interval(
-    new Mark(350),
-    new Mark(400),
-    'B'
-  ),
-  new Interval(
-    new Mark(400),
-    new Mark(450),
-    'C'
-  ),
-]
+let antiguedad = new Interval({
+  from: -3000,
+  to: 476,
+  title: 'Antiguedad'
+})
 
-let dinosaurs = new Timeline()
-dinosaurs.name = 'Era Trilozoica'
-dinosaurs.events = [
-  new Interval(
-    new Mark(-500),
-    new Mark(-300),
-    'Jurasico'
-  ),
-  new Interval(
-    new Mark(-300),
-    new Mark(600),
-    'Perasico'
-  ),
-  new Interval(
-    new Mark(600),
-    new Mark(800),
-    'Tirasico'
-  ),
-]
+let edadMedia = new Interval({
+  from: 476,
+  to: 1492,
+  title: 'Edad Media'
+})
+
+let edadModerna = new Interval({
+  from: 1492,
+  to: 1789,
+  title: 'Edad Moderna'
+})
+
+let edadContemporanea = new Interval({
+  from: 1789,
+  to: 2019,
+  title: 'Edad Contemporánea'
+})
+
+cellarius.events.push(
+  antiguedad,
+  edadMedia,
+  edadModerna,
+  edadContemporanea
+)
 
 let foo = [] // Array of *Timeframe* ~ []Timeframe
 foo.push(
-  Capodonica,
-  dinosaurs
+  cellarius
 )
 
 let someDudes = new Timeline()
 someDudes.name = 'Greek Philosophers'
 someDudes.tags.push(['Philosophy', 'Greek Philosophy'])
 
-let socrates = new Interval(
-  new Mark(-470),
-  new Mark(-399),
-  'Socrates'
-)
+let socrates = new Interval({
+  from: -470,
+  to: -399,
+  title: 'Socrates',
+})
 
-let platon = new Interval(
-  new Mark(-427),
-  new Mark(-347),
-  'Platon'
-)
+let platon = new Interval({
+  from: -427,
+  to: -347,
+  title: 'Platon',
+})
 
-let aristoteles = new Interval(
-  new Mark(-384),
-  new Mark(-322),
-  'Aristoteles'
-)
+let aristoteles = new Interval({
+  from: -384,
+  to: -322,
+  title: 'Aristoteles',
+})
 
 someDudes.events.push(
   socrates,
@@ -109,13 +74,11 @@ someDudes.events.push(
 // let nietzsche = new Interval(
 //   new Mark(1844),
 //   new Mark(1900),
-//   'Friedrich Nietzsche'
 // )
 
 // let schopenhauer = new Interval(
 //   new Mark(1788),
 //   new Mark(1860),
-//   'Arthur Schopenhauer'
 // )
 
 // goodFellas.events.push(
@@ -128,3 +91,18 @@ someDudes.events.push(
 // people.events.push(someDudes, goodFellas)
 
 export { foo, someDudes as bar }
+
+/*
+let antiguedad = new Interval(
+  new Mark(-3000),
+  new Mark(476)
+)
+antiguedad.i18n = {
+  messages: {
+    es: { message: { name: 'Antiguedad' } }
+    en: { message: { name: 'Ancient history' } }
+    cn: { message: { name: '----' } }
+  }
+}
+
+*/

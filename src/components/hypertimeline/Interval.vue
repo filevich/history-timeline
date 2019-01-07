@@ -4,8 +4,8 @@
       width: width + 'px',
       marginLeft: marginLeft + 'px' 
     }"
-    :title="title">
-    <span class="name">{{data.name}}</span>
+    :title="$t('message.title')">
+    <span class="name">{{$t('message.title')}}</span>
     
     <!-- sub intervals -->
     <div class="lane" v-if="data.subIntervals">
@@ -23,10 +23,18 @@
 <script>
 // :left last event, in the same lane, to the left, *IN YEARS*
 import Vue from 'vue'
+// import i18n from '../../locales'
 
 export default Vue.extend({
   name: 'interval',
   props: ['data', 'ratio', 'left'],
+  i18n: {
+  },
+  created: function() {
+    if (this.data.i18n) {
+      this.$i18n.setLocaleMessage('es', this.data.i18n.messages.es)
+    }
+  },
   methods: {
     last(index) {
       if (index > 0) {
