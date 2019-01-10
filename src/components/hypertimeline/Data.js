@@ -1,98 +1,99 @@
 import { Interval, Timeline } from './Helper'
 
-let cellarius = new Timeline()
-cellarius.name = `División clásica de Cellarius`
+let cellarius = new Timeline(`División clásica de Cellarius`)
 
-let antiguedad = new Interval({
-  from: -3000,
-  to: 476,
-  title: 'Antiguedad'
-})
+cellarius.events = [
+  new Interval({
+    title: 'Antiguedad',
+    from: -3000,
+    to: 476,
+  }),
 
-let edadMedia = new Interval({
-  from: 476,
-  to: 1492,
-  title: 'Edad Media'
-})
+  new Interval({
+    title: 'Edad Media',
+    from: 476,
+    to: 1492,
+  }),
 
-let edadModerna = new Interval({
-  from: 1492,
-  to: 1789,
-  title: 'Edad Moderna'
-})
+  new Interval({
+    title: 'Edad Moderna',
+    from: 1492,
+    to: 1789,
+  }),
 
-let edadContemporanea = new Interval({
-  from: 1789,
-  to: 2019,
-  title: 'Edad Contemporánea'
-})
+  new Interval({
+    title: 'Edad Contemporánea',
+    from: 1789,
+    to: 2019,
+  })
+]
 
-cellarius.events.push(
-  antiguedad,
-  edadMedia,
-  edadModerna,
-  edadContemporanea
-)
-
-let foo = [] // Array of *Timeframe* ~ []Timeframe
-foo.push(
+let upper = [] // Array of *Timeframe* ~ []Timeframe
+upper.push(
   cellarius
 )
 
-let someDudes = new Timeline()
-someDudes.name = 'Greek Philosophers'
-someDudes.tags.push(['Philosophy', 'Greek Philosophy'])
+let lower = new Timeline()
 
-let socrates = new Interval({
-  from: -470,
-  to: -399,
-  title: 'Socrates',
-})
+let greekPhilosophers = new Timeline('Greek Philosophers')
+greekPhilosophers.tags.push(['Philosophy', 'Greek Philosophy'])
+greekPhilosophers.events.push(
+  new Interval({
+    title: 'Socrates',
+    from: -470,
+    to: -399,
+  }),
 
-let platon = new Interval({
-  from: -427,
-  to: -347,
-  title: 'Platon',
-})
+  new Interval({
+    title: 'Platon',
+    from: -427,
+    to: -347,
+  }),
 
-let aristoteles = new Interval({
-  from: -384,
-  to: -322,
-  title: 'Aristoteles',
-})
-
-someDudes.events.push(
-  socrates,
-  platon,
-  aristoteles
+  new Interval({
+    title: 'Aristoteles',
+    from: -384,
+    to: -322,
+  })
 )
 
-// let goodFellas = new Timeline()
-// goodFellas.name = 'German Philosophers'
-// goodFellas.tags.push(['Philosophy', 'German Philosophy'])
+let easternPhilosophers = new Timeline('Eastern Philosophers')
+easternPhilosophers.tags.push(['Philosophy', 'Eastern Philosophy'])
+easternPhilosophers.events.push(
+  new Interval({
+    title: 'Sun Tzu',
+    from: -545,
+    to: -470,
+  }),
+)
 
-// let nietzsche = new Interval(
-//   new Mark(1844),
-//   new Mark(1900),
-// )
+let germanPhilosophers = new Timeline('German Philosophers')
+germanPhilosophers.tags.push(['Philosophy', 'German Philosophy'])
+germanPhilosophers.events.push(
+  new Interval({
+    title: 'Nietzsche',
+    from: 1844,
+    to: 1900,
+  }),
 
-// let schopenhauer = new Interval(
-//   new Mark(1788),
-//   new Mark(1860),
-// )
+  new Interval({
+    title: 'Schopenhauer',
+    from: 1788,
+    to: 1860,
+  })
+)
 
-// goodFellas.events.push(
-//   nietzsche,
-//   schopenhauer,
-// )
+lower.events.push(
+  greekPhilosophers,
+  germanPhilosophers,
+  easternPhilosophers
+)
 
-// let people = new Timeline()
-// people.name = 'People in general'
-// people.events.push(someDudes, goodFellas)
-
-export { foo, someDudes as bar }
+export { upper, lower }
 
 /*
+// old manual way
+
 let antiguedad = new Interval(
   new Mark(-3000),
   new Mark(476)

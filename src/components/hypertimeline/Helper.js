@@ -45,6 +45,9 @@ export class Timeline {
   events = []
   name = ''
   tags = []
+  constructor(_name) {
+    this.name = _name
+  }
 }
 
 // todo: make temporal mark like rules in photoshop

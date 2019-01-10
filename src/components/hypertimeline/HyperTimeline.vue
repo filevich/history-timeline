@@ -22,12 +22,25 @@
     <timeframe :width="totalWidthInPixels" :from="from" :to="to" :vw="viewWidthInYears"/>
 
     <div id="lower-timeline" :style="{ width: totalWidthInPixels + 'px' }">
-        <div class="lane" v-for="(event, index) in events" :key="index">
-            <div class="intervals-container" :style="{ marginLeft: cv(event.from.year) + 'px' }">
+        <!-- 
+        <template v-for="timeline in events">
+            <div class="lane" v-for="(event, index) in timeline.events" :key="index">
+                <div class="intervals-container" :style="{ marginLeft: cv(event.from.year) + 'px' }">
+                    <interval 
+                        :key="index"
+                        :data="event"
+                        :ratio="ratio" />
+                </div>
+            </div>
+        </template> -->
+        <div class="lane" v-for="(lane, index) in intervalScheduling" :key="index">
+            <div class="intervals-container" :style="{ marginLeft: cv(lane[0].from.year) + 'px' }">
                 <interval 
+                    v-for="(interval, index) in lane"
                     :key="index"
-                    :data="event"
-                    :ratio="ratio" />
+                    :data="interval"
+                    :left="index > 0 ? lane[index - 1].to.year : 0"
+                    :ratio="ratio"/>
             </div>
         </div>
     </div>
@@ -41,7 +54,8 @@ import Vue from 'vue'
 import _Interval from '../../components/hypertimeline/Interval'
 import Timeframe from '../../components/hypertimeline/Timeframe'
 
-import {foo, bar} from './Data'
+import {upper, lower} from './Data'
+import { Timeline } from './Helper'
 
 /* Constants */
 const defaultZoomSensitivity = 0.0001
@@ -49,6 +63,26 @@ const DEFAULT_POSITION = 0 // year 0 ~ Jesus is born!
 const DEFAULT_RATIO = 1 / 1 // 1 pixel = 1 year (pixels over years)
 const DEFAULT_FROM = -4000 // 4,000 BC
 const PRESENT = new Date().getFullYear()
+
+/**
+ * Merges recursively source:(Timeline|interval|mark) into res
+ * @return res:(interval|mark)[]
+ */
+let mergeRecursive = (source) => {
+    let res = []
+    if (source instanceof Timeline) {
+        source.events.forEach((event) => {
+            res = res.concat(
+                mergeRecursive(event)
+            )
+        })
+    } else {
+        // is either a single interval (with possible sub-interbals) or mark
+        return [source]
+    }
+
+    return res
+}
 
 export default Vue.extend({
     // html-args
@@ -66,8 +100,8 @@ export default Vue.extend({
             zoomSensitivity: defaultZoomSensitivity,
             position: (this.initialPosition) ? this.initialPosition : DEFAULT_POSITION,
             // todo: merge these two together
-            timeFrames: foo,
-            events: bar.events,
+            timeFrames: upper,
+            events: lower.events,
         }
     },
     mounted() {
@@ -111,6 +145,36 @@ export default Vue.extend({
             let vwiy = this.vw / this.ratio
             // console.log('view width in years', vwiy)
             return vwiy
+        },
+        intervalScheduling() {
+            // first merge it all in a single overlaped lane
+            let merged = mergeRecursive(lower)
+
+            // then sort them by "finish time" asc (`event.to` in this case)
+            let sorted = merged.sort((a, b) => {
+                return a.to.year - b.to.year
+            })
+
+            let lanes = [] // array of (array of compatible event)
+            // distribute `sorted` in the least amount of non overlaping lanes
+            sorted.forEach(event => {
+                let i = 0
+                for (; i < lanes.length; i++) {
+                    let n = lanes[i].length - 1
+                    let last = lanes[i][n].to.year
+                    let laneIsCompatible = last <= event.from.year
+                    if (laneIsCompatible) {
+                        break
+                    }
+                }
+                let newLaneNeeded = lanes.length === i
+                if (newLaneNeeded) {
+                    lanes[i] = []
+                }
+                lanes[i].push(event)
+            })
+
+            return lanes
         }
     }
 })
