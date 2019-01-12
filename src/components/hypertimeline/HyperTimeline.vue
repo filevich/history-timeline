@@ -1,5 +1,5 @@
 <template>
-  <div id="time-line" @wheel="wheelZoom" class="">
+  <div id="time-line" @wheel="wheelZoom" class="custom-scroll">
     
     <div id="controls">
         ZOOM: {{roundedZoom}}% RATIO: {{ratio}}
@@ -21,7 +21,7 @@
     
     <timeframe :width="totalWidthInPixels" :from="from" :to="to" :vw="viewWidthInYears"/>
 
-    <div id="lower-timeline" :style="{ width: totalWidthInPixels + 'px' }">
+    <div id="lower-timeline" :style="{ width: totalWidthInPixels + 'px', height: 2000 + 'px' }">
         <div class="lane" v-for="(lane, index) in intervalScheduling" :key="index">
             <div class="intervals-container" :style="{ marginLeft: cv(lane[0].from.year) + 'px' }">
                 <interval 
@@ -171,10 +171,39 @@ export default Vue.extend({
 
 <style lang="scss">
 #time-line {
-	background: rgba(255, 0, 0, 0.3);
+	background: #eacf9e;
     width: 75%;
     position: relative;
     overflow: scroll;
+
+    &::-webkit-scrollbar:vertical {
+        display: none;
+    }
+}
+
+.custom-scroll {
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+
+        &:hover {
+            background: black;
+        }
+    }
+}
+
+
+#upper-timeline {
+    background: #fcf0d9;
+}
+
+#lower-timeline {
+	background: #eacf9e;
 }
 
 #controls {

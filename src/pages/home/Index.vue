@@ -70,6 +70,10 @@ html {
 	height: 100%;
 }
 
+.home{
+	overflow: hidden;
+}
+
 #parent {
 	display: flex;
 	flex-direction: row;

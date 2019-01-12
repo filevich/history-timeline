@@ -1,11 +1,11 @@
-import { Interval, Timeline, latinized } from './Helper'
+import { Interval, Timeline, century } from './Helper'
 
 let centuries = new Timeline()
 
 for (let c = -38; c <= -2; c++) {
   centuries.events.push(
     new Interval({
-      title: latinized(c),
+      title: century(c),
       from: c * 100,
       to: (c * 100) + 100
     })
@@ -14,7 +14,7 @@ for (let c = -38; c <= -2; c++) {
 
 centuries.events.push(
   new Interval({
-    title: latinized(-1),
+    title: century(-1),
     from: -100,
     to: -1
   })
@@ -22,7 +22,7 @@ centuries.events.push(
 
 centuries.events.push(
   new Interval({
-    title: latinized(1),
+    title: century(1),
     from: 1,
     to: 100
   })
@@ -31,7 +31,7 @@ centuries.events.push(
 for (let c = 2; c <= 21; c++) {
   centuries.events.push(
     new Interval({
-      title: latinized(c),
+      title: century(c),
       from: c * 100 - 100,
       to: c * 100
     })
@@ -160,10 +160,26 @@ germanPhilosophers.events.push(
   })
 )
 
+let cleopatra = new Interval({
+  title: 'Cleopatra',
+  from: -69,
+  to: -30,
+})
+cleopatra.tags.push(['Roman Empire', 'Egypt', 'Pharaoh'])
+
+let caesar = new Interval({
+  title: 'Julio César',
+  from: -100,
+  to: -44,
+})
+caesar.tags.push(['Roman Empire'])
+
 lower.events.push(
   greekPhilosophers,
   germanPhilosophers,
-  easternPhilosophers
+  easternPhilosophers,
+  cleopatra,
+  caesar
 )
 
 export { upper, lower }

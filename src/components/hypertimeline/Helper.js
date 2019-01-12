@@ -93,7 +93,7 @@ export function toRoman(num) {
   return Array(+digits.join('') + 1).join('M') + romanNum
 }
 
-export function latinized(num) {
+export function century(num) {
   let x = (num <= -1) ? 'BC' : 'AD'
   return `s. ${toRoman(num)} ${x}`
 }

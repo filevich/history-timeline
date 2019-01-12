@@ -61,7 +61,7 @@ export default Vue.extend({
   height: 34px;
   padding-top: 5px;
   border-style: solid;
-  border-color: black;
+  border-color: #907d5b;
   border-width: 1px 0px;
 }
 .dummy {
@@ -81,6 +81,8 @@ export default Vue.extend({
 }
 
 .year-mark {
+  color: #523500;
+  
   &:before {
     content: '|';
     position: absolute;

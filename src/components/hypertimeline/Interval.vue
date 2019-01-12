@@ -62,7 +62,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .interval{
-  background: yellow;
+  background: #fcf0d9;
   box-shadow: inset 0 0 1px black;
   /* border-left: 1px solid black; */
   overflow: hidden;
@@ -74,14 +74,14 @@ export default Vue.extend({
   align-items: center;
 
   &:hover {
-    background: #f2595761;
+    background: #a0670082;
     cursor: default;
   }
   
   .name {
-    color: red;
+    color: #5d4315;
     padding: 5px 0;
-
+    width: max-content;
     height: 100%;
     display: flex;
     justify-content: center;
