@@ -1,4 +1,42 @@
-import { Interval, Timeline } from './Helper'
+import { Interval, Timeline, latinized } from './Helper'
+
+let centuries = new Timeline()
+
+for (let c = -38; c <= -2; c++) {
+  centuries.events.push(
+    new Interval({
+      title: latinized(c),
+      from: c * 100,
+      to: (c * 100) + 100
+    })
+  )
+}
+
+centuries.events.push(
+  new Interval({
+    title: latinized(-1),
+    from: -100,
+    to: -1
+  })
+)
+
+centuries.events.push(
+  new Interval({
+    title: latinized(1),
+    from: 1,
+    to: 100
+  })
+)
+
+for (let c = 2; c <= 21; c++) {
+  centuries.events.push(
+    new Interval({
+      title: latinized(c),
+      from: c * 100 - 100,
+      to: c * 100
+    })
+  )
+}
 
 let cellarius = new Timeline(`División clásica de Cellarius`)
 
@@ -68,7 +106,8 @@ cellarius.events = [
 
 let upper = [] // Array of *Timeframe* ~ []Timeframe
 upper.push(
-  cellarius
+  cellarius,
+  centuries
 )
 
 let lower = new Timeline()

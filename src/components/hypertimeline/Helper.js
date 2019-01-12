@@ -72,3 +72,28 @@ export class Timeline {
 // getMarginLeft(START, ratio) {
 //   return this.toAbsoluteFrom(START) * ratio + 'px'
 // }
+
+// got dis from https://www.w3resource.com/javascript-exercises/javascript-math-exercise-21.php
+export function toRoman(num) {
+  if (typeof num !== 'number') {
+    return false
+  }
+
+  let digits = String(+num).split('')
+  let key = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM',
+      '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC',
+      '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']
+  let romanNum = ''
+  let i = 3
+
+  while (i--) {
+    romanNum = (key[+digits.pop() + (i * 10)] || '') + romanNum
+  }
+
+  return Array(+digits.join('') + 1).join('M') + romanNum
+}
+
+export function latinized(num) {
+  let x = (num <= -1) ? 'BC' : 'AD'
+  return `s. ${toRoman(num)} ${x}`
+}

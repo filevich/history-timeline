@@ -2,7 +2,7 @@
   <div id="timeline-container" :style="{ width: width + 'px' }">
     <div 
       v-for="i in numStdJumps"
-      :key="i" 
+      :key="i"
       :style="{ 'margin-left': getJumpYear(i) + 'px' }"
       class="floating self-centered year-mark">
       {{ getDividerName(i) }}
@@ -23,10 +23,19 @@ export default Vue.extend({
   props: ['width', 'from', 'to', 'vw'],
   methods: {
     getDividerName(i) {
-      return this.from + (i * this.stdJumpInYears)
+      let name = this.from + (i * this.stdJumpInYears)
+      if (name === 0) {
+        name = 1
+      }
+      return name
     },
     getJumpYear(i) {
-      return i * this.stdJumpInYears
+      let res = i * this.stdJumpInYears
+      let isAD = (i / this.stdJumpInYears) >= 0.4
+      if (isAD) {
+        res-- // 1px fix year zero
+      }
+      return res
     },
   },
   computed: {
