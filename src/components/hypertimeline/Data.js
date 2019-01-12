@@ -10,8 +10,8 @@ cellarius.events = [
     subIntervals: [
       new Interval({
         title: 'Antigüedad clásica',
-        from: -753,
-        to: 476,
+        from: -753, // <- fundacion de Roma
+        to: 476,    // <- caída del Imperio romano de Occidente
       }),
     ]
   }),
@@ -20,6 +20,37 @@ cellarius.events = [
     title: 'Edad Media',
     from: 476,
     to: 1492,
+    subIntervals: [
+      new Interval({
+        title: 'Alta Edad Media',
+        from: 476, // <- caída del Imperio romano de Occidente
+        to: 1000,    // <- resurgimiento económico y cultural del continente
+      }),
+
+      new Interval({
+        title: 'Baja Edad Media',
+        from: 1000,
+        to: 1492,
+        subIntervals: [
+          new Interval({
+            title: 'Plenitud de la Edad Media',
+            from: 1000, // <- siglos XI
+            to: 1200,   // <- siglos XIII ~ Crisis de la Edad Media
+          }),
+
+          /**
+           * "Crisis is the word which comes immediately to the historian's
+           * mind when he thinks of the fourteenth and the fifteenth centuries."
+           * Léopold Genicot's 1971
+           */
+          new Interval({
+            title: 'crisis de la Edad Media',
+            from: 1315, // <- La Gran Hambruna de 1315-1317
+            to: 1492,
+          }),
+        ]
+      }),
+    ]
   }),
 
   new Interval({

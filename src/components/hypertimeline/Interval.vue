@@ -54,7 +54,7 @@ export default Vue.extend({
         return (this.data.to.year - this.data.from.year) * this.ratio
     },
     title() {
-      return this.$i18n.t('message.title') + ` (${this.data.from.year}-${this.data.to.year})`
+      return this.$i18n.t('message.title') + ` (${this.data.from.year},${this.data.to.year})`
     }
   }
 })
@@ -68,7 +68,8 @@ export default Vue.extend({
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
+  justify-content: flex-end;
   align-content: center;
   align-items: center;
 
@@ -80,6 +81,12 @@ export default Vue.extend({
   .name {
     color: red;
     padding: 5px 0;
+
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
   }
 }
 </style>

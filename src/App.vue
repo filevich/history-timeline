@@ -2,13 +2,14 @@
 	<div id="app">
 		<loading :loadingStatus="loadingStatus"></loading>
 		<alert :alertStatus="alertStatus"></alert>
-		<div class="nav-bar">History Inspector
-			<span>{{ $t('lang.components.checkbox.label[0].langSwitch') }}</span>
-		<div class="language-panel" style="display: inline-block;">
-			<span class="language-btn" @click="switchI18n('es')">ES</span>
-			<span class="language-btn" @click="switchI18n('en')">EN</span>
-			<span class="language-btn" @click="switchI18n('cn')">簡</span>
-		</div>
+		<div class="nav-bar">
+			<div id="app-logo">History Inspector</div>
+			<div class="language-panel" style="display: inline-block;">
+				<span>{{ $t('lang.components.checkbox.label[0].langSwitch') }}</span>
+				<span class="language-btn" @click="switchI18n('es')">ES</span>
+				<span class="language-btn" @click="switchI18n('en')">EN</span>
+				<span class="language-btn" @click="switchI18n('cn')">簡</span>
+			</div>
 		</div>
 		<!-- <img src="./assets/img/logo.png"> -->
 		<router-view></router-view>
@@ -113,10 +114,23 @@
 		width: 100%;
 		background: black;
 		color: white;
-		font-family: monospace;
-		font-size: 18pt;
-		font-weight: bold;
 		padding: 10px 0;
 		// margin-bottom: 20px;
+		display: flex;
+    align-items: center;
+    justify-content: center;
+	
+		#app-logo {
+			display: inline-block;
+			font-family: monospace;
+			font-size: 18pt;
+			font-weight: bold;
+			/* margin: 0 20px; */
+			flex: 1;
+		}
+	}
+	
+	.language-panel {
+		padding-right: 20px;
 	}
 </style>
