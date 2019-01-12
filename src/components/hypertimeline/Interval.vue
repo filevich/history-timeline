@@ -4,7 +4,7 @@
       width: width + 'px',
       marginLeft: marginLeft + 'px' 
     }"
-    :title="$t('message.title')">
+    :title="title">
     <span class="name">{{$t('message.title')}}</span>
     
     <!-- sub intervals -->
@@ -40,7 +40,7 @@ export default Vue.extend({
       if (index > 0) {
         return this.data.subIntervals[index - 1].to.year
       }
-      return null
+      return this.data.from.year
     },
   },
   computed: {
@@ -54,7 +54,7 @@ export default Vue.extend({
         return (this.data.to.year - this.data.from.year) * this.ratio
     },
     title() {
-      return `${this.data.name} (${this.data.from.year}-${this.data.to.year})`
+      return this.$i18n.t('message.title') + ` (${this.data.from.year}-${this.data.to.year})`
     }
   }
 })

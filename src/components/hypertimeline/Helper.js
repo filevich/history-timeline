@@ -25,6 +25,9 @@ export class Interval {
       let data = arguments[0]
       this.from = new Mark(data.from)
       this.to = new Mark(data.to)
+      if (data.subIntervals !== undefined) {
+        this.subIntervals = data.subIntervals
+      }
       this.i18n = {
         messages: {
           es: { message: { title: data.title } }

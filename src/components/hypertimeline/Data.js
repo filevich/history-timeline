@@ -7,6 +7,13 @@ cellarius.events = [
     title: 'Antiguedad',
     from: -3000,
     to: 476,
+    subIntervals: [
+      new Interval({
+        title: 'Antigüedad clásica',
+        from: -753,
+        to: 476,
+      }),
+    ]
   }),
 
   new Interval({

@@ -13,7 +13,7 @@
                 <interval 
                     v-for="(interval, index) in timeframe.events"
                     :key="index"
-                    :data="interval"                
+                    :data="interval"               
                     :ratio="ratio"/>
             </div>
         </div>
@@ -22,17 +22,6 @@
     <timeframe :width="totalWidthInPixels" :from="from" :to="to" :vw="viewWidthInYears"/>
 
     <div id="lower-timeline" :style="{ width: totalWidthInPixels + 'px' }">
-        <!-- 
-        <template v-for="timeline in events">
-            <div class="lane" v-for="(event, index) in timeline.events" :key="index">
-                <div class="intervals-container" :style="{ marginLeft: cv(event.from.year) + 'px' }">
-                    <interval 
-                        :key="index"
-                        :data="event"
-                        :ratio="ratio" />
-                </div>
-            </div>
-        </template> -->
         <div class="lane" v-for="(lane, index) in intervalScheduling" :key="index">
             <div class="intervals-container" :style="{ marginLeft: cv(lane[0].from.year) + 'px' }">
                 <interval 
