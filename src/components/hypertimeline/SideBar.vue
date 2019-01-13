@@ -1,5 +1,5 @@
 <template>
-    <div id="side-bar" class="custom-scroll">
+    <div id="side-bar">
         <el-button type="primary" :loading="true">Loading</el-button>
         <hr />
         {{text}}

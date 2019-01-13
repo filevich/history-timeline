@@ -1,5 +1,5 @@
 <template>
-  <div id="time-line" @wheel="wheelZoom" class="custom-scroll">
+  <div id="time-line" @wheel="wheelZoom" class="">
     
     <div id="controls">
         ZOOM: {{roundedZoom}}% RATIO: {{ratio}}
@@ -171,39 +171,20 @@ export default Vue.extend({
 
 <style lang="scss">
 #time-line {
-	background: #eacf9e;
+	background: hsl(39, 30%, 85%);
     width: 75%;
     position: relative;
-    overflow: scroll;
+    overflow-y: hidden;
+    overflow-x: scroll;
 
-    &::-webkit-scrollbar:vertical {
-        display: none;
-    }
 }
-
-.custom-scroll {
-    &::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.6);
-        border-radius: 10px;
-
-        &:hover {
-            background: black;
-        }
-    }
-}
-
 
 #upper-timeline {
-    background: #fcf0d9;
+    background: hsl(39, 30%, 85%);
 }
 
 #lower-timeline {
-	background: #eacf9e;
+	background: hsl(39, 30%, 85%);
 }
 
 #controls {
