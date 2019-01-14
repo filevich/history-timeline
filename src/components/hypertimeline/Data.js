@@ -16,14 +16,14 @@ centuries.events.push(
   new Interval({
     title: century(-1),
     from: -100,
-    to: -1
+    to: 0 // <- actually should be -1. but 100 - 0 = 100 years century vs 100 - (-1) = 99 years century :(
   })
 )
 
 centuries.events.push(
   new Interval({
     title: century(1),
-    from: 1,
+    from: 0, // <- actually should be -1. but 100 - 0 = 100 years century vs 100 - (-1) = 99 years century :(
     to: 100
   })
 )
@@ -174,12 +174,20 @@ let caesar = new Interval({
 })
 caesar.tags.push(['Roman Empire'])
 
+let pitagoras = new Interval({
+  title: 'Pitágoras',
+  from: -569,
+  to: -475,
+})
+pitagoras.tags.push(['Philosophy', 'Eastern Philosophy', 'Mathematics'])
+
 lower.events.push(
   greekPhilosophers,
   germanPhilosophers,
   easternPhilosophers,
   cleopatra,
-  caesar
+  caesar,
+  pitagoras
 )
 
 export { upper, lower }

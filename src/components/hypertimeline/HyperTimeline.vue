@@ -7,7 +7,7 @@
         <button @click="increment">+</button>
     </div>
 
-    <div id="upper-timeline" :style="{ width: totalWidthInPixels + 'px' }"> <!-- TEMPORAL FIX -->
+    <div id="upper-timeline" :style="{ width: totalWidthInPixels + 'px' }">
         <div class="lane" v-for="(timeframe, index) in timeFrames" :key="index">
             <div class="intervals-container" :style="{ marginLeft: cv(timeFrames[index].events[0].from.year) + 'px' }">
                 <interval 
@@ -19,7 +19,7 @@
         </div>
     </div>
     
-    <timeframe :width="totalWidthInPixels" :from="from" :to="to" :vw="viewWidthInYears"/>
+    <timeframe :from="from" :to="to" :vw="viewWidthInYears" :ratio="ratio" />
 
     <div id="lower-timeline" :style="{ width: totalWidthInPixels + 'px', height: 2000 + 'px' }">
         <div class="lane" v-for="(lane, index) in intervalScheduling" :key="index">
