@@ -1,6 +1,10 @@
-## Dynamic history Timeline made in Vue.js + HTML5
+## Dynamic history Timeline made in Vue.js + HTML5 + i18n
 
-![Screenshot](https://i.imgur.com/Omd8wTS.png)
+screenshots:
+
+![Screenshot 1](https://i.imgur.com/Omd8wTS.png)
+![Screenshot 2](https://i.imgur.com/GmVe1xD.png)
+
 
 ``` bash
 # install dependencies
