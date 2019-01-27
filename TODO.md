@@ -1,6 +1,3 @@
-SORT lower-EVENTS
-PRINT THEM USING AS LESS AS POSSIBLE lanes. (finish time first)
-
 ```
 new Mark(-500)    // 500 BC
 new Mark(500)     // 500 AD

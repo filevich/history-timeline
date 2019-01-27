@@ -181,13 +181,64 @@ let pitagoras = new Interval({
 })
 pitagoras.tags.push(['Philosophy', 'Eastern Philosophy', 'Mathematics'])
 
+/* Mathematicians */
+
+let mathematicians = new Timeline('German Philosophers')
+mathematicians.tags.push(['Mathematics'])
+mathematicians.events.push(
+  new Interval({
+    title: 'Leonhard Euler',
+    from: 1707,
+    to: 1783,
+  }),
+
+  new Interval({
+    title: 'Joseph-Louis Lagrange',
+    from: 1736, // Torino !!
+    to: 1813,
+  })
+)
+
+/* ** */
+
+/* Literature */
+
+let homero = new Interval({
+  title: 'Homero',
+  from: -800,  // c. VIII AC
+  to: -700,    // c. VIII AC
+})
+homero.tags.push(['Poet'])
+
+/* Historians */
+
+let herodoto = new Interval({
+  title: 'Heródoto',
+  from: -485,
+  to: -425,
+})
+herodoto.tags.push(['Historian', 'History'])
+
+/* Religion */
+
+let jesus = new Interval({
+  title: 'Jesus',
+  from: -4, // <- ??
+  to: 33, // <- according to Newton (wikipedia:Chronology_of_Jesus)
+})
+jesus.tags.push(['Religion'])
+
 lower.events.push(
   greekPhilosophers,
   germanPhilosophers,
   easternPhilosophers,
   cleopatra,
   caesar,
-  pitagoras
+  pitagoras,
+  mathematicians,
+  herodoto,
+  homero,
+  jesus
 )
 
 export { upper, lower }

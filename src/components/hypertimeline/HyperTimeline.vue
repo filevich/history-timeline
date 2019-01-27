@@ -1,8 +1,9 @@
 <template>
-  <div id="time-line" @wheel="wheelZoom" class="">
+  <!-- <div id="time-line" @wheel="wheelZoom" class=""> -->
+  <div id="time-line" class="">
     
     <div id="controls">
-        ZOOM: {{roundedZoom}}% RATIO: {{ratio}}
+        RATIO: {{ratio}} px : 1 year
         <button @click="decrement">-</button>
         <button @click="increment">+</button>
     </div>
@@ -82,8 +83,8 @@ export default Vue.extend({
     },
     data() {
         return {
-            from: DEFAULT_FROM,    // year 1,000 BC
-            to: PRESENT,   // year 1,000 AD
+            from: DEFAULT_FROM,
+            to: PRESENT + 1,
             vw: 1, // view width
             zoom: this.initialZoom,
             zoomSensitivity: defaultZoomSensitivity,
