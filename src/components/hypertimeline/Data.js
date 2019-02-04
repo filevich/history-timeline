@@ -104,16 +104,70 @@ cellarius.events = [
   })
 ]
 
+let greeceHistory = new Timeline(`Historia de Grecia`)
+
+// pre-helenicos: las civilizaciones egeas (cicládica, minoica o cretense y micénica)
+// pueblos helénicos -aqueos, dorios, jonios, eolios
+
+greeceHistory.events = [
+
+  new Interval({
+    title: 'Prehelénico',
+    from: -4000,
+    to: -1200, // Arcaico
+  }),
+
+  new Interval({
+    title: 'Época oscura', // siglos V y IV
+    from: -1200, // invasion doria: fin del mundo micénico
+    to: -776, // Arcaico
+  }),
+
+  new Interval({
+    title: 'Época arcaica', // siglos V y IV
+    from: -776, // primeros juegos olimpicos
+    to: -499, // clasico
+  }),
+
+  new Interval({
+    title: 'Grecia clásica', // siglos V y IV
+    from: -499, // revuelta de Jonia para frenar al imperio persa
+    to: -323, // helenistico
+    subIntervals: [
+
+      // new Interval({
+      //   title: 'Guerras Médicas #1',
+      //   from: -492,
+      //   to: -490,
+      // }),
+
+      // new Interval({
+      //   title: 'Guerras Médicas #2',
+      //   from: -480,
+      //   to: -479,
+      // }),
+
+    ]
+  }),
+
+  new Interval({
+    title: 'Período helenístico', // transición entre declive grecia clásica, ascenso romano
+    from: -323, // muere Alejandro Magno
+    to: -30, // muerte de la última helenística: Cleopatra
+  })
+]
+
 let upper = [] // Array of *Timeframe* ~ []Timeframe
 upper.push(
   cellarius,
-  centuries
+  centuries,
+  greeceHistory
 )
 
 let lower = new Timeline()
 
 let greekPhilosophers = new Timeline('Greek Philosophers')
-greekPhilosophers.tags.push(['Philosophy', 'Greek Philosophy'])
+greekPhilosophers.tags.push(['Philosophy', 'Greece'])
 greekPhilosophers.events.push(
   new Interval({
     title: 'Socrates',
@@ -135,7 +189,7 @@ greekPhilosophers.events.push(
 )
 
 let easternPhilosophers = new Timeline('Eastern Philosophers')
-easternPhilosophers.tags.push(['Philosophy', 'Eastern Philosophy'])
+easternPhilosophers.tags.push(['Philosophy', 'China'])
 easternPhilosophers.events.push(
   new Interval({
     title: 'Sun Tzu',
@@ -145,7 +199,7 @@ easternPhilosophers.events.push(
 )
 
 let germanPhilosophers = new Timeline('German Philosophers')
-germanPhilosophers.tags.push(['Philosophy', 'German Philosophy'])
+germanPhilosophers.tags.push(['Philosophy', 'Germany'])
 germanPhilosophers.events.push(
   new Interval({
     title: 'Nietzsche',
@@ -208,7 +262,7 @@ let homero = new Interval({
   from: -800,  // c. VIII AC
   to: -700,    // c. VIII AC
 })
-homero.tags.push(['Poet'])
+homero.tags.push(['Literature'])
 
 /* Historians */
 
@@ -217,7 +271,7 @@ let herodoto = new Interval({
   from: -485,
   to: -425,
 })
-herodoto.tags.push(['Historian', 'History'])
+herodoto.tags.push(['History'])
 
 /* Religion */
 
@@ -227,6 +281,24 @@ let jesus = new Interval({
   to: 33, // <- according to Newton (wikipedia:Chronology_of_Jesus)
 })
 jesus.tags.push(['Religion'])
+
+/* Politicians */
+
+let solon = new Interval({
+  title: 'Solón',
+  from: -640,
+  to: -558,
+})
+solon.tags.push(['Politics', 'Philosophy', 'Literature', 'Commerce'])
+
+let licurgo = new Interval({
+  title: 'Licurgo',
+  from: -800,
+  to: -730,
+})
+licurgo.tags.push(['Politics', 'Philosophy', 'Literature', 'Commerce'])
+
+/* Query('Greeks philosophers') = #Greece + #Philosophy */
 
 lower.events.push(
   greekPhilosophers,
@@ -238,7 +310,9 @@ lower.events.push(
   mathematicians,
   herodoto,
   homero,
-  jesus
+  jesus,
+  solon,
+  licurgo
 )
 
 export { upper, lower }
