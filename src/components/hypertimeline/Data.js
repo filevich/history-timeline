@@ -214,6 +214,13 @@ germanPhilosophers.events.push(
   })
 )
 
+let alejandro = new Interval({
+  title: 'Alejandro Magno',
+  from: -356,
+  to: -323,
+})
+alejandro.tags.push(['Egypt', 'Babylon', 'Greece'])
+
 let cleopatra = new Interval({
   title: 'Cleopatra',
   from: -69,
@@ -304,6 +311,7 @@ lower.events.push(
   greekPhilosophers,
   germanPhilosophers,
   easternPhilosophers,
+  alejandro,
   cleopatra,
   caesar,
   pitagoras,
