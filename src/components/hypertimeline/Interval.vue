@@ -2,7 +2,8 @@
   <div class="interval"
     :style="{
       width: width + 'px',
-      marginLeft: marginLeft + 'px' 
+      marginLeft: marginLeft + 'px',
+      display: width < 51 ? 'none' : 'flex'
     }"
     :title="title">
     <span class="name">{{$t('message.title')}}</span>

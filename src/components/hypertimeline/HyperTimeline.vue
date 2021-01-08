@@ -50,7 +50,6 @@ import { Timeline } from './Helper'
 /* Constants */
 const defaultZoomSensitivity = 0.0001
 const DEFAULT_POSITION = 0 // year 0 ~ Jesus is born!
-const DEFAULT_RATIO = 1 / 1 // 1 pixel = 1 year (pixels over years)
 const DEFAULT_FROM = -4000 // 4,000 BC
 const PRESENT = new Date().getFullYear()
 
@@ -124,9 +123,17 @@ export default Vue.extend({
             return Number((this.zoom).toFixed(1))
         },
         ratio() {
-            // ratio = 1 pixel = x years
-            // if zoom = 0% then 1 pixel = 1 year
-            return DEFAULT_RATIO + (DEFAULT_RATIO * this.zoom)
+            /*
+            zoom=2 -> ratio = 4px/1yr ~ 4
+            zoom=1 -> ratio = 2px/1yr ~ 2
+            zoom=0 -> ratio  = 1px/1yr ~ 1
+            zoom=-1 -> ratio = 1px/2yr ~ 0.5
+            zoom=-2 -> ratio = 1px/4yr ~ 0.25
+            zoom=-3 -> ratio = 1px/8yr ~ 0.125
+            then ratio=(1px/2^-zoom yr)
+            */
+            let r = 1 / Math.pow(2, -this.zoom)
+            return r
         },
         totalWidthInPixels() {
             return (this.to - this.from) * this.ratio
