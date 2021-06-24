@@ -190,11 +190,36 @@ greekPhilosophers.events.push(
 
 let easternPhilosophers = new Timeline('Eastern Philosophers')
 easternPhilosophers.tags.push(['Philosophy', 'China'])
+
 easternPhilosophers.events.push(
   new Interval({
     title: 'Sun Tzu',
     from: -545,
     to: -470,
+  }),
+)
+
+easternPhilosophers.events.push(
+  new Interval({
+    title: 'Buda Gautama',
+    from: -563,
+    to: -483,
+  }),
+)
+
+easternPhilosophers.events.push(
+  new Interval({
+    title: 'Lao-Tse',
+    from: -600,
+    to: -500,
+  }),
+)
+
+easternPhilosophers.events.push(
+  new Interval({
+    title: 'Confucio',
+    from: -551,
+    to: -479,
   }),
 )
 
@@ -305,6 +330,27 @@ let licurgo = new Interval({
 })
 licurgo.tags.push(['Politics', 'Philosophy', 'Literature', 'Commerce'])
 
+let filipoII = new Interval({
+  title: 'Filipo II de Macedonia',
+  from: -382,
+  to: -336,
+})
+filipoII.tags.push(['Politics'])
+
+let prisciliano = new Interval({
+  title: 'Prisciliano',
+  from: 385,
+  to: 340,
+})
+prisciliano.tags.push(['Religion'])
+
+let franciscodeAsis = new Interval({
+  title: 'Francisco de Asís',
+  from: 1182,
+  to: 1226,
+})
+franciscodeAsis.tags.push(['Religion'])
+
 /* Query('Greeks philosophers') = #Greece + #Philosophy */
 
 lower.events.push(
@@ -320,7 +366,10 @@ lower.events.push(
   homero,
   jesus,
   solon,
-  licurgo
+  licurgo,
+  filipoII,
+  prisciliano,
+  franciscodeAsis
 )
 
 export { upper, lower }

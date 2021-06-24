@@ -3,7 +3,8 @@
     :style="{
       width: width + 'px',
       marginLeft: marginLeft + 'px',
-      display: width < 51 ? 'none' : 'flex'
+      display: width < 20 ? 'none' : 'flex'
+      // display: 'flex'      
     }"
     :title="title">
     <span class="name">{{$t('message.title')}}</span>
